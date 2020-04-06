@@ -13,7 +13,9 @@
 
          后端：springboot框架，mysql，mybatis，pagehelper，springboot-mail，EnableScheduling定时任务， RestTemplate调用天气api
 
-* 项目结构：后台：显示历史推送记录和影片库    定时任务：推送静态邮件至用户邮箱
+* 项目结构：
+             后台：显示历史推送记录和影片库    
+             定时任务：推送静态邮件至用户邮箱
 
 * 项目介绍：
 
