@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Hello World</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          th:href="@{https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css}" />
+</head>
+<style type="text/css">
+    .full-screen {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .fixed-page {
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto
+    }
+
+    .jumbotron {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+        background-color: #e9ecef;
+        border-radius: .3rem
+    }
+
+    .jumbotron-fluid {
+        padding-right: 0;
+        padding-left: 0;
+        border-radius: 0
+    }
+    <!-- -->
+    a {
+        color: #c75f3e;
+    }
+
+    #mytable {
+        width: 700px;
+        padding: 0;
+        margin: 0;
+    }
+
+    caption {
+        padding: 0 0 5px 0;
+        width: 700px;
+        font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        text-align: right;
+    }
+
+    th {
+        font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        color: #4f6b72;
+        border-right: 1px solid #C1DAD7;
+        border-bottom: 1px solid #C1DAD7;
+        border-top: 1px solid #C1DAD7;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-align: left;
+        padding: 6px 6px 6px 12px;
+        background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+    }
+
+
+
+    td {
+        border-right: 1px solid #C1DAD7;
+        border-bottom: 1px solid #C1DAD7;
+        background: #fff;
+        font-size: 11px;
+        padding: 6px 6px 6px 12px;
+        color: #4f6b72;
+    }
+
+
+    td.alt {
+        background: #F5FAFA;
+        color: #797268;
+    }
+
+    th.spec {
+        border-left: 1px solid #C1DAD7;
+        border-top: 0;
+        background: #fff url(images/bullet1.gif) no-repeat;
+        font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    }
+
+    th.specalt {
+        border-left: 1px solid #C1DAD7;
+        border-top: 0;
+        background: #f5fafa url(images/bullet2.gif) no-repeat;
+        font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        color: #797268;
+    }
+
+    /*---------for IE 5.x bug*/
+    html>body td {
+        font-size: 11px;
+    }
+
+</style>
+
+<body class="fixed-page">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff"
+       style="font-family:'Microsoft YaHei';">
+    <div class="jumbotron jumbotron-fluid full-screen">
+        <div class="container  full-screen">
+            <h3>Hi,
+                <span th:text="${username}">Developer</span>
+            </h3>
+            <p>今日天气:
+                <span th:text="${weather.getType()}"></span></p>
+
+            <p><span th:text="${weather.getHigh()},${weather.getLow()}"></span></p>
+            <p> 适合看:
+                <code style="color: #d57e13;"><span th:text="${m.title}">title</span></code>,
+            </p>
+            <table id="mytable" width="80%" cellspacing="0" summary="The technical specifications of the Apple PowerMac G5 series">
+                <caption> </caption>
+
+                <tr>
+                    <th scope="row" abbr="Model" class="spec">排名</th>
+                    <td th:text="${m.rank}"></td>
+                </tr>
+                <tr>
+                    <th scope="row" abbr="G5 Processor" class="specalt">评分</th>
+                    <td class="alt" th:text="${m.ratingNum}" ></td>
+                </tr>
+                <tr>
+                    <th scope="row" abbr="Frontside bus" class="spec">喜爱人数</th>
+                    <td th:text="${m.ratingPeopleNum}"> </td>
+
+                </tr>
+                <tr>
+                    <th scope="row" abbr="L2 Cache" class="specalt">评价</th>
+                    <td class="alt" th:text="${m.quote}" ></td>
+            </table>
+            <div id="div1">
+                <a href="#" th:href="@{${m.url} }">前往</a>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+</table>
+</body>
+
+
+</html>

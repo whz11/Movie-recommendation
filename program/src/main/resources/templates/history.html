@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>userList</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    </link>
+
+    <link rel="stylesheet" type="text/css" href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="container">
+<br />
+<h1>历史推送</h1>
+<br /><br />
+<!-- w -->
+<script type="text/javascript">
+    WIDGET = {FID: 'JfjzugRmps'}
+</script>
+<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th><i class="fa fa-chevron-right" data-flag="1"></i>#</th>
+            <th>title</th>
+            <th>rank</th>
+            <th>评分</th>
+            <th>发送用户</th>
+            <th>时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="click1  success" th:if="${movie.size()} eq 0">
+            <td colspan="3">未查询到信息!</td>
+        </tr>
+        <tr class="click1  success" th:each="m : ${movie}">
+            <th scope="row" th:text="${m.id}">1</th>
+            <td th:text="${m.title}">title</td>
+            <td th:text="${m.rank}">rank</td>
+            <td th:text="${m.ratingNum}">num</td>
+            <td th:text="${m.user}">num</td>
+            <td th:text="${m.dealTime}">time</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toList" th:href="@{/toList}" class="btn btn-info">影片库</a>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src='http://www.htmleaf.com/js/jquery/1.10.1/jquery.min.js'></script>
+<script type="text/javascript" src='http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js'></script>
+<script type="text/javascript">
+
+    $(".fa-chevron-right").on('click', function (event) {
+        var flag = $(this).attr("data-flag");
+        $(".click" + flag).toggle();
+        var $this = $(this);
+        if ($this.hasClass('fa-chevron-right')) {
+            $this.removeClass('fa-chevron-right').addClass('fa-chevron-down');
+        } else {
+            $this.removeClass('fa-chevron-down').addClass('fa-chevron-right');
+        }
+    });
+
+
+</script>
+</html>
