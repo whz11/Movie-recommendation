@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 
 @Configuration
-public class WeatherConfig {
+public class RestTemplateConfig {
 
     @Bean
     public RestTemplate restTemplate(){
