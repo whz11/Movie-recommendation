@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 public class RestTemplateConfig {
 
-    @Bean
+
     public RestTemplate restTemplate(){
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
         restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));

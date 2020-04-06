@@ -39,7 +39,7 @@ public class DemoController {
     @RequestMapping("/list")
     public String list(Model model,
                        @RequestParam(defaultValue = "1") int pageNum,
-                       @RequestParam(defaultValue = "25") int pageSize) {
+                       @RequestParam(defaultValue = "15") int pageSize) {
         PageInfo page=demoService.getList(pageNum,pageSize);
         model.addAttribute("page", page);
         return "index";

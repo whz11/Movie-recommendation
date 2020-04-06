@@ -36,7 +36,7 @@ public class SaticScheduleTask {
 
 
 
-    @Scheduled(cron = "0 43 22 * * ?")
+    @Scheduled(cron = "0 00 8 * * ?")
     private void configureTasks() {
         LotteryUtil lotteryUtil=new LotteryUtil();
         String user="1195687131@qq.com";
@@ -57,7 +57,7 @@ public class SaticScheduleTask {
     }
 
 
-    @Scheduled(cron = "0 51 16 * * ?")
+    @Scheduled(cron = "0 00 6 * * ?")
     public  void WeaherControl() {
         String[] weeks = {"星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天", "星期一"};
         String apiURL = "http://wthrcdn.etouch.cn/weather_mini?city=" + "台州";

@@ -94,7 +94,7 @@
 
                     <thead>
                     <tr>
-                        <th><i class="fa fa-chevron-right" data-flag="1"></i>排名</th>
+                        <th>排名</th>
                         <th>影片名</th>
                         <th>评分</th>
                         <th>喜爱人数</th>
@@ -106,7 +106,7 @@
                     </thead>
                     <tbody>
 
-                    <tr class="click1  success" th:each="p:${page.list}">
+                    <tr th:each="p:${page.list}">
                         <td th:text="${p.rank}"></td>
                         <td th:text="${p.title}"></td>
                         <td th:text="${p.ratingNum}"></td>
@@ -155,21 +155,5 @@
     </div>
 
 </body>
-<script type="text/javascript" src='http://www.htmleaf.com/js/jquery/1.10.1/jquery.min.js'></script>
-<script type="text/javascript" src='http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js'></script>
-<script type="text/javascript">
 
-    $(".fa-chevron-right").on('click', function (event) {
-        var flag = $(this).attr("data-flag");
-        $(".click" + flag).toggle();
-        var $this = $(this);
-        if ($this.hasClass('fa-chevron-right')) {
-            $this.removeClass('fa-chevron-right').addClass('fa-chevron-down');
-        } else {
-            $this.removeClass('fa-chevron-down').addClass('fa-chevron-right');
-        }
-    });
-
-
-</script>
 </html>
