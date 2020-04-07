@@ -3,7 +3,7 @@
 >宅在家中最幸福的事情莫过于看好电影，但是经过大学一个学期，好多高中想看的电影都看完了，所以打算设计一个程序，每日推荐电影
 
 
-* 开发环境：java jdk8 ，mysql（数据库名program，两个表movie和weather），idea，Navicat
+* 开发环境：java jdk8 ，mysql（数据库名program，三个表movie，weather和schedule），idea，Navicat
 
 * 测试环境：postman，idea JUnit
 
@@ -15,7 +15,7 @@
 
 * 项目结构：
 
-         后台：显示历史推送记录和影片库
+         后台：显示历史推送记录和影片库,新增修改定时任务时间功能
          定时任务：获取当日天气
          定时任务：推送静态邮件至用户邮箱
 
