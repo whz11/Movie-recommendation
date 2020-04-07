@@ -2,6 +2,7 @@ package com.example.program.service.impl;
 
 import com.example.program.dao.DemoMapper;
 import com.example.program.model.Entity;
+import com.example.program.model.Schedule;
 import com.example.program.service.DemoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -49,5 +50,13 @@ public class DemoServiceImpl implements DemoService {
             entity.setId(i++);
         }
         return list;
+    }
+    @Override
+    public void updateTime(Schedule schedule){
+        demoMapper.updateSchedule(schedule);
+    }
+    @Override
+    public Schedule getSchedule(){
+        return demoMapper.getSchedule();
     }
 }

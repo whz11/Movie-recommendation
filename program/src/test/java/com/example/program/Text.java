@@ -3,6 +3,7 @@ package com.example.program;
 import com.alibaba.fastjson.JSONObject;
 import com.example.program.dao.DemoMapper;
 import com.example.program.model.Entity;
+import com.example.program.model.Schedule;
 import com.example.program.model.Weather;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -84,6 +86,7 @@ public class Text {
     }
     @Test
     public void weather(){
+        System.out.println(LocalDate.now());
     Weather weather=demoMapper.getWeather(LocalDate.now());
     String high=weather.getHigh();
     String low=weather.getLow();
@@ -104,6 +107,12 @@ public class Text {
     hInt=Integer.parseInt(h.toString());
     lInt=Integer.parseInt(l.toString());
         System.out.println(weather.getHigh()+weather.getLow()+weather.getFengli()+hInt);
+    }
+    @Test
+    public void text2(){
+
+    Schedule schedule=demoMapper.getSchedule();
+        System.out.println(schedule.getHour());
     }
 
 }

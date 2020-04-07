@@ -8,11 +8,16 @@ import com.example.program.util.LotteryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.web.client.RestTemplate;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import org.springframework.scheduling.TriggerContext;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -21,7 +26,7 @@ import java.util.Date;
 
 @Configuration
 @EnableScheduling
-public class SaticScheduleTask {
+public class SaticScheduleTask implements SchedulingConfigurer {
     @Autowired
     private MailService mailService;
 
@@ -29,31 +34,47 @@ public class SaticScheduleTask {
     private DemoMapper demoMapper;
 
     @Autowired
-    private TemplateEngine templateEngine;
-
-    @Autowired
     private RestTemplate restTemplate;
 
+    public static String cron;
 
 
-    @Scheduled(cron = "0 00 8 * * ?")
-    private void configureTasks() {
-        LotteryUtil lotteryUtil=new LotteryUtil();
-        String user="1195687131@qq.com";
-        Context context = new Context();
-        Entity entity=lotteryUtil.lottery();
-        entity.setFlag(1);
-        LocalDate date=LocalDate.now();
-        demoMapper.saveTime(date,entity.getRank());
-        demoMapper.saveUser(user,entity.getRank());
-        Weather weather=demoMapper.getWeather(date);
-        context.setVariable("m", entity);
-        context.setVariable("time", date);
-        context.setVariable("username", "hz");
-        context.setVariable("weather", weather);
-        String emailContent = templateEngine.process("emailTemplate", context);
+    /*
+    public String schedule =demoMapper.getSchedule().getTime();
+    public final String time=a();
 
-        mailService.sendHtmlMail(user, "电影推送", emailContent);
+
+    public final String a(){
+        String s=demoMapper.getSchedule().getTime();
+        if(s==null) {
+            return "0 00 06 * * ?";
+        }else {
+            return s;
+        }
+    }
+ */
+  //  @Scheduled(cron ="0 00 08 * * ?" )
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+        cron=demoMapper.getSchedule().getTime();
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                //任务逻辑代码部分.
+                mailService.sendMail();
+            }
+        };
+        Trigger trigger = new Trigger() {
+            @Override
+            public Date nextExecutionTime(TriggerContext triggerContext) {
+                //任务触发，可修改任务的执行周期.
+                //每一次任务触发，都会执行这里的方法一次，重新获取下一次的执行时间
+                cron = demoMapper.getSchedule().getTime();
+                CronTrigger trigger = new CronTrigger(cron);
+                return trigger.nextExecutionTime(triggerContext);
+            }
+        };
+        taskRegistrar.addTriggerTask(task, trigger);
     }
 
 

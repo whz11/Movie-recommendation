@@ -1,6 +1,10 @@
 package com.example.program.service.impl;
 
+import com.example.program.dao.DemoMapper;
+import com.example.program.model.Entity;
+import com.example.program.model.Weather;
 import com.example.program.service.MailService;
+import com.example.program.util.LotteryUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,8 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.context.IContext;
 
+import java.time.LocalDate;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class MailServiceImplTest {
@@ -18,6 +24,12 @@ class MailServiceImplTest {
 
     @Autowired
     private TemplateEngine templateEngine;
+
+    @Autowired
+    private DemoMapper demoMapper;
+
+    @Autowired
+    private LotteryUtil lotteryUtil;
 
 
     @Test
@@ -38,5 +50,26 @@ class MailServiceImplTest {
                 "</body>\n" +
                 "</html>";
         mailService.sendHtmlMail("1195687131@qq.com","test simple mail",content);
+    }
+    @Test
+    public void sendMail(){
+        String user="1195687131@qq.com";
+        Context context = new Context();
+        Weather weather=demoMapper.getWeather(LocalDate.now());
+        Entity entity=lotteryUtil.lottery();
+        entity.setFlag(1);
+        LocalDate date=LocalDate.now();
+        entity.setUser(user);
+        entity.setDealTime(date);
+        demoMapper.updateEntity(entity);
+        //demoMapper.saveTime(date,entity.getRank());
+        //demoMapper.saveUser(user,entity.getRank());
+        context.setVariable("m", entity);
+        context.setVariable("time", date);
+        context.setVariable("username", "hz");
+        context.setVariable("weather", weather);
+        String emailContent = templateEngine.process("emailTemplate", context);
+
+        mailService.sendHtmlMail(user, "电影推送", emailContent);
     }
 }

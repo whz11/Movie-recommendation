@@ -2,15 +2,14 @@ package com.example.program.controller;
 
 
 import com.example.program.model.Entity;
+import com.example.program.model.Schedule;
 import com.example.program.service.DemoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -32,7 +31,9 @@ public class DemoController {
     @RequestMapping("/history")
     public String history(Model model){
         List movie=demoService.getHistory();
+        Schedule schedule=demoService.getSchedule();
         model.addAttribute("movie",movie);
+        model.addAttribute("schedule",schedule);
         return "history";
     }
 
@@ -60,7 +61,25 @@ public class DemoController {
     public String toHistory(){
         return "redirect:/history";
     }
+    @ResponseBody
+    @RequestMapping(value="/update",method=RequestMethod.POST)
+    public String add(@ModelAttribute Schedule schedule){
+
+        try{
+            String hour=schedule.getHour();
+            String min=schedule.getMin();
+            String sec=schedule.getSec();
+            String time=sec+" "+min+" "+hour+" * * ?";
+            schedule.setTime(time);
+            demoService.updateTime(schedule);
+        }catch (Exception e){
+           return "修改时间失败";
+       }
+
+        return "修改时间成功(真正生效在下下次)";
+    }
 }
+
 /*
     @RequestMapping("/toEdit")
     public String toEdit(Model model,Long id) {

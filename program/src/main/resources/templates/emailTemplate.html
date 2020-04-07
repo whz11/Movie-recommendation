@@ -120,7 +120,7 @@
             <p>今日天气:
                 <span th:text="${weather.getType()}"></span></p>
 
-            <p><span th:text="${weather.getHigh()},${weather.getLow()}"></span></p>
+            <p><span th:text="${weather.getHigh()}+，+${weather.getLow()}"></span></p>
             <p> 适合看:
                 <code style="color: #d57e13;"><span th:text="${m.title}">title</span></code>,
             </p>

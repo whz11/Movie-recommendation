@@ -5,7 +5,7 @@ import com.example.program.model.Entity;
 import com.example.program.model.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
-
+import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,10 +15,12 @@ import java.util.List;
  * @author whz
  * 天气随机算法
  */
+@Component       //可恶一直空指针，原来是无法注入Mapper，找了好久
 public class LotteryUtil {
 
     @Autowired
     private DemoMapper demoMapper;
+
     public final int averagePeopleNum=400923;
 
 
@@ -26,8 +28,8 @@ public class LotteryUtil {
 
         int i=0;
         int flag=weatherPoint();
-        List<Entity> list=new ArrayList<>();
         Weather weather=demoMapper.getWeather(LocalDate.now());
+        List<Entity> list=new ArrayList<>();
         if("阴".equals(weather.getType())){
             list=demoMapper.getYin(averagePeopleNum);
         }else {
@@ -42,27 +44,31 @@ public class LotteryUtil {
         }
         return list.get(0);
     }
-    public int weatherPoint(){
-        Weather weather=demoMapper.getWeather(LocalDate.now());
-        String high=weather.getHigh();
-        String low=weather.getLow();
-        StringBuilder h= new StringBuilder();
-        StringBuilder l= new StringBuilder();
-        int hInt;
-        int lInt;
-        for(int i=0;i<high.length();i++) {
-            if (high.charAt(i) >= 48 && high.charAt(i) <= 57) {
-                h.append(high.charAt(i));
+    private int weatherPoint(){
+        if(demoMapper.getWeather(LocalDate.now())!=null) {
+            Weather weather=demoMapper.getWeather(LocalDate.now());
+            String high = weather.getHigh();
+            String low = weather.getLow();
+            StringBuilder h = new StringBuilder();
+            StringBuilder l = new StringBuilder();
+            int hInt;
+            int lInt;
+            for (int i = 0; i < high.length(); i++) {
+                if (high.charAt(i) >= 48 && high.charAt(i) <= 57) {
+                    h.append(high.charAt(i));
+                }
             }
-        }
-        for(int i=0;i<low.length();i++){
-            if(low.charAt(i)>=48&&low.charAt(i)<=57){
-                l.append(low.charAt(i));
+            for (int i = 0; i < low.length(); i++) {
+                if (low.charAt(i) >= 48 && low.charAt(i) <= 57) {
+                    l.append(low.charAt(i));
+                }
             }
-        }
-        hInt=Integer.parseInt(h.toString());
-        lInt=Integer.parseInt(l.toString());
+            hInt = Integer.parseInt(h.toString());
+            lInt = Integer.parseInt(l.toString());
 
-        return (hInt+lInt)/2;
+            return (hInt + lInt) / 2;
+        }else {
+            return 1;
+        }
     }
 }

@@ -53,6 +53,74 @@
         <a href="/toList" th:href="@{/toList}" class="btn btn-info">影片库</a>
     </div>
 </div>
+<br/>
+<br/>
+<br/>
+<h2>修改定时时间</h2>
+<p>当前时间 <span th:text="${schedule.getHour()}+：+${schedule.getMin()}+：+${schedule.getSec()}"></span></p>
+<form action="#" th:action="@{/update}" th:object="${schedule}" method="post">
+    <select name="hour" >
+        <option value="*" th:field="*{hour}">默认</option>
+        <option value="00" th:field="*{hour}">0</option>
+        <option value="01" th:field="*{hour}">1</option>
+        <option value="02" th:field="*{hour}">2</option>
+        <option value="03" th:field="*{hour}">3</option>
+        <option value="04" th:field="*{hour}">4</option>
+        <option value="05" th:field="*{hour}">5</option>
+        <option value="06" th:field="*{hour}">6</option>
+        <option value="07" th:field="*{hour}">7</option>
+        <option value="08" th:field="*{hour}">8</option>
+        <option value="09" th:field="*{hour}">9</option>
+        <option value="10" th:field="*{hour}">10</option>
+        <option value="11" th:field="*{hour}">11</option>
+        <option value="12" th:field="*{hour}">12</option>
+        <option value="13" th:field="*{hour}">13</option>
+        <option value="14" th:field="*{hour}">14</option>
+        <option value="15" th:field="*{hour}">15</option>
+        <option value="16" th:field="*{hour}">16</option>
+        <option value="17" th:field="*{hour}">17</option>
+        <option value="18" th:field="*{hour}">18</option>
+        <option value="19" th:field="*{hour}">19</option>
+        <option value="20" th:field="*{hour}">20</option>
+        <option value="21" th:field="*{hour}">21</option>
+        <option value="22" th:field="*{hour}">22</option>
+        <option value="23" th:field="*{hour}">23</option>
+
+    </select>
+    <lable>时</lable>
+
+    <select name="min">
+        <option value="*" th:field="*{min}">默认</option>
+        <option value="00" th:field="*{min}">00</option>
+        <option value="10" th:field="*{min}">10</option>
+        <option value="20" th:field="*{min}">20</option>
+        <option value="30" th:field="*{min}">30</option>
+        <option value="40" th:field="*{min}">40</option>
+        <option value="50" th:field="*{min}">50</option>
+    </select>
+    <lable>分</lable>
+
+    <select name="sec">
+        <option value="*" th:field="*{sec}">默认</option>
+        <option value="00" th:field="*{sec}">00</option>
+        <option value="10" th:field="*{sec}">10</option>
+        <option value="20" th:field="*{sec}">20</option>
+        <option value="30" th:field="*{sec}">30</option>
+        <option value="40" th:field="*{sec}">40</option>
+        <option value="50" th:field="*{sec}">50</option>
+    </select>
+    <lable>秒</lable>
+    <input type="submit" />
+
+</form>
+<!--form
+<form action="#" th:action="@{/update}" th:object="${schedule}" method="post">
+    <input type="text" placeholder="小时(默认任意时间)" value="*" th:field="*{hour}" />
+    <input type="text" placeholder="分钟(默认任意时间)" value="*" th:field="*{min}" />
+    <input type="text" placeholder="秒(默认任意时间)" class="inp-fon" th:field="*{sec}" />
+    <input type="submit" />
+</form>
+-->
 
 </body>
 <script type="text/javascript" src='http://www.htmleaf.com/js/jquery/1.10.1/jquery.min.js'></script>
