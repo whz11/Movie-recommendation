@@ -25,8 +25,14 @@
 * 项目运行：
           
          1.首先创建三张表（我放sql文件夹里了）
+         
          2.然后修改application.properties里对应的数据库信息，mail部分可以不用改发送人，
          因为还要去获取第三方邮件发送码，有点麻烦，mail.sendMail.addr=1195687131@qq.com可以改成自己qq
+         
          3.运行项目，登录网页localhost:8081
+         
          4.定时任务可以直接在schedule表中修改time字段（采用cron 格式），因为网页中修改要到下下次才能成功
+         
+         5.天气api地址调用城市是台州，可以在SaticScheduleTask.class/weatherControl方法中找到String apiURl修改
+         
          5.目前想那么多，如果有问题联系qq：1195687131
