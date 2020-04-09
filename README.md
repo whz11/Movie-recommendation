@@ -41,5 +41,9 @@
          5.天气api地址调用城市是台州，可以在SaticScheduleTask.class/weatherControl方法中找到String apiURl修改
          
          5.目前想那么多，如果有问题联系qq：1195687131
-
-
+         
+* 项目截图：         
+         
+   ![](https://tva1.sinaimg.cn/large/00831rSTly1gdnmefw1iwj31910u0dmr.jpg)
+   ![](https://tva1.sinaimg.cn/large/00831rSTly1gdnmgj1m6lj31910u0anq.jpg)
+   ![](https://tva1.sinaimg.cn/large/00831rSTly1gdnmih2zvfj30u01t0tb3.jpg)
