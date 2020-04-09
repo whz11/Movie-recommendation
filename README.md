@@ -12,6 +12,9 @@
          前端：thymeleaf模板，html，css，js
 
          后端：springboot框架，mysql，mybatis，pagehelper，springboot-mail，EnableScheduling定时任务， RestTemplate调用天气api
+         
+* 项目部署到服务器上：
+        [link](http://47.99.205.75:8081/)
 
 * 项目结构：
 
@@ -39,5 +42,4 @@
          
          5.目前想那么多，如果有问题联系qq：1195687131
 
-* 项目部署到服务器上：
-        [link](http://47.99.205.75:8081/)
+
