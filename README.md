@@ -39,7 +39,5 @@
          
          5.目前想那么多，如果有问题联系qq：1195687131
 
-* 项目截图：
-
-    ![img](image/D643E698-1135-4C22-B1B5-F197F5D4F69C.png)
-    ![img2](https://github.com/whz11/Movie-recommendation/blob/master/image/D643E698-1135-4C22-B1B5-F197F5D4F69C.png)
+* 项目部署到服务器上：
+        [link](http://47.99.205.75:8081/)
