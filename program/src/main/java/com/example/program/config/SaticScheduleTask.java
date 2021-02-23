@@ -6,6 +6,7 @@ import com.example.program.model.Weather;
 import com.example.program.service.MailService;
 import com.example.program.util.LotteryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.Trigger;
@@ -81,7 +82,7 @@ public class SaticScheduleTask implements SchedulingConfigurer {
     @Scheduled(cron = "0 00 6 * * ?")
     public  void WeaherControl() {
         String[] weeks = {"星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天", "星期一"};
-        String apiURL = "http://wthrcdn.etouch.cn/weather_mini?city=" + "台州";
+        String apiURL="http://wthrcdn.etouch.cn/weather_mini?city=" + "台州";
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiURL, String.class);
         String str = responseEntity.toString();
         LocalDateTime now = LocalDateTime.now();

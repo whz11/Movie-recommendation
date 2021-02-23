@@ -31,7 +31,7 @@ class MailServiceImplTest {
     @Autowired
     private LotteryUtil lotteryUtil;
 
-
+/*
     @Test
     void sendTemplateMail() {
         //创建邮件正文
@@ -42,6 +42,7 @@ class MailServiceImplTest {
         mailService.sendHtmlMail("515197890@qq.com", "主题：", emailContent);
     }
 
+
     @Test
     public void testHtmlMail() throws Exception {
         String content="<html>\n" +
@@ -51,14 +52,16 @@ class MailServiceImplTest {
                 "</html>";
         mailService.sendHtmlMail("1195687131@qq.com","test simple mail",content);
     }
+
+ */
     @Test
     public void sendMail(){
         String user="1195687131@qq.com";
+        LocalDate date=LocalDate.now();
+        Weather weather=demoMapper.getWeather(date);
         Context context = new Context();
-        Weather weather=demoMapper.getWeather(LocalDate.now());
         Entity entity=lotteryUtil.lottery();
         entity.setFlag(1);
-        LocalDate date=LocalDate.now();
         entity.setUser(user);
         entity.setDealTime(date);
         demoMapper.updateEntity(entity);

@@ -62,10 +62,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.7</version>
         </dependency>
-
+<!--目前加了version用于远端服务器-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.12</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -109,15 +110,6 @@
         </dependency>
     </dependencies>
 
-    <typeHandlers>
-        <typeHandler handler="org.apache.ibatis.type.InstantTypeHandler" />
-        <typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
-        <typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" />
-        <typeHandler handler="org.apache.ibatis.type.LocalTimeTypeHandler" />
-        <typeHandler handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />
-        <typeHandler handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />
-        <typeHandler handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />
-    </typeHandlers>
 
     <build>
         <plugins>
